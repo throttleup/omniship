@@ -30,6 +30,7 @@ module Omniship
                                                  })
 
     CUSTOMER_CLASSIFICATIONS = HashWithIndifferentAccess.new({
+                                                                 :associated => "00",
                                                                  :wholesale => "01",
                                                                  :occasional => "03",
                                                                  :retail => "04"
