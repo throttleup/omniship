@@ -437,6 +437,12 @@ module Omniship
                       xml.DCISType package.options[:delivery_confirmation_type]
                     }
                   end
+                  if package.options[:insured_value].present?
+                    xml.InsuredValue {
+                      xml.CurrencyCode package.options[:insured_value_currency_code]
+                      xml.MonetaryValue package.options[:insured_value]
+                    }
+                  end
                 }
                 # not implemented:  * Shipment/Package/LargePackageIndicator element
                 #                   * Shipment/Package/ReferenceNumber element
