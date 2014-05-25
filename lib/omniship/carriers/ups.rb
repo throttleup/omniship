@@ -147,7 +147,9 @@ module Omniship
       options[:test]    = options[:test].nil? ? true : options[:test]
       access_request    = build_access_request
       ship_void_request = build_void_request(ups_shipment_id,tracking_number)
+      binding.pry
       response          = commit(:shipvoid, save_request(access_request.gsub("\n", "") + ship_void_request.gsub("\n", "")), options[:test])
+      binding.pry
       parse_ship_void_response(response, options)
     end
 
@@ -272,6 +274,12 @@ module Omniship
                   if package.options[:delivery_confirmation_type].present?
                     xml.DeliveryConfirmation {
                       xml.DCISType package.options[:delivery_confirmation_type]
+                    }
+                  end
+                  if package.options[:insured_value].present?
+                    xml.InsuredValue {
+                      xml.CurrencyCode package.options[:insured_value_currency_code]
+                      xml.MonetaryValue package.options[:insured_value]
                     }
                   end
                 }
